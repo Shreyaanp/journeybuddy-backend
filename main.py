@@ -67,7 +67,7 @@ async def recommend(data: QueryData):
             Hi, my name is {data.name} and I am visiting Ooty with {data.numberOfPeople} people, 
             you have to search for a hotels that can accommodate us. Meaning that should be less than or equal to {data.numberOfPeople} while searching for query.
             the budget is {data.budget}, it can be 1000 above the budget or 1000 below the budget.
-            Show me top 10 matching hit hotel having highest rating.
+            give top 10 matching hit hotel names only.
         """
        
         response = run_query(query)
