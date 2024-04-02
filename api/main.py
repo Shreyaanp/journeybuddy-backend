@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from auth import User, user_exists, register_user, authenticate_user
-
+from mangum import Mangum
 from ai_model import run_query
 from typing import Optional
 from pydantic import BaseModel
