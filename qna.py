@@ -8,13 +8,12 @@ from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from dotenv import load_dotenv
 import os
 
-# Load environment variables
+
 load_dotenv()
 
-# Replace 'YOUR_API_KEY_HERE' with your actual Google API key fetched from environment variables
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
-# Ensure that the API key is not None or empty
+
 if not GOOGLE_API_KEY:
     raise ValueError("Google API Key not found in environment variables.")
 
@@ -22,8 +21,6 @@ genai.configure(api_key=GOOGLE_API_KEY)
 os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
 combined_content = ""
 
-# Assuming the correct file paths (use the actual paths where your files are located)
-# Load the Attractions file as text
 with open('./data/Attractions.txt', 'r') as file:
     attractions_content = file.read()
     combined_content += attractions_content + "\n\n"  # Add a newline for separation

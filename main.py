@@ -1,7 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from auth import User, user_exists, register_user, authenticate_user
-from mangum import Mangum
 from ai_model import run_query
 from typing import Optional
 from pydantic import BaseModel
@@ -35,6 +34,10 @@ class QueryData(BaseModel):
 class QnaQuery(BaseModel):
     query: str
 
+@app.get("/")
+async def read_root():
+    return {"Hello": "World"}
+
 @app.post("/register")
 def register(user: User):
     if user_exists(user.email):
@@ -59,14 +62,14 @@ def login(user: User):
 @app.post("/recommend")
 async def recommend(data: QueryData):
     try:
-        # Using an f-string to format the string with data from the QueryData model
+       
         query = f"""
             Hi, my name is {data.name} and I am visiting Ooty with {data.numberOfPeople} people, 
             you have to search for a hotels that can accommodate us. Meaning that should be less than or equal to {data.numberOfPeople} while searching for query.
             the budget is {data.budget}, it can be 1000 above the budget or 1000 below the budget.
             Show me top 10 matching hit hotel having highest rating.
         """
-        # Assuming `run_query` can now handle the query string directly
+       
         response = run_query(query)
         print(response)
         return {"message": "Recommendation processed successfully", "response": response}
