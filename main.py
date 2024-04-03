@@ -9,7 +9,7 @@ app = FastAPI()
 # CORS middleware setup for cross-origin requests
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["https://journeybuddy-backend.onrender.com/"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -37,13 +37,6 @@ class QnaQuery(BaseModel):
 @app.get("/")
 async def read_root():
     return {"Hello": "World"}
-
-@app.post("/register")
-def register(user: User):
-    if user_exists(user.email):
-        raise HTTPException(status_code=400, detail="Email already registered")
-    register_user(user.email, user.password)
-    return {"message": "User registered successfully"}
 
 @app.post("/register")
 def register(user: User):
