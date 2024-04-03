@@ -9,7 +9,7 @@ app = FastAPI()
 # CORS middleware setup for cross-origin requests
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://journeybuddy-backend.onrender.com/"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
